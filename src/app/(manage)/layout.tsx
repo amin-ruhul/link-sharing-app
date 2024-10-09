@@ -18,7 +18,7 @@ export default async function ManageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex flex-col min-h-screen container mx-auto">
+    <main className="flex flex-col min-h-screen container px-2 mx-auto">
       <div className="py-6 w-full">
         <NavBar />
       </div>
@@ -28,7 +28,7 @@ export default async function ManageLayout({
           <PreviewPhone links={links} />
         </section>
 
-        <section className="bg-white w-full lg:w-[57%] flex items-center justify-center rounded-lg">
+        <section className="bg-white w-full lg:w-[57%] flex items-center justify-center rounded-lg py-3">
           {children}
         </section>
       </div>

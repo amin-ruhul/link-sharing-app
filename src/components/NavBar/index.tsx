@@ -12,7 +12,9 @@ function NavBar() {
         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
           <Link2 />
         </div>
-        <span className="text-2xl font-bold text-gray-800">devlinks</span>
+        <span className="text-2xl font-bold text-gray-800 hidden md:block">
+          devlinks
+        </span>
       </div>
 
       <div className="flex items-center desktop:gap-x-4 font-semibold">
@@ -36,7 +38,7 @@ function NavBar() {
             <span className="md:hidden">
               <Eye className="w-5 h-5" />
             </span>
-            <span className="hidden lg:block font-semibold">Preview</span>
+            <span className="hidden md:block font-semibold">Preview</span>
           </Link>
         </Button>
       </div>
