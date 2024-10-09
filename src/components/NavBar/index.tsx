@@ -34,7 +34,7 @@ function NavBar() {
 
       <div>
         <Button asChild variant="secondary" className="py-3 px-4 md:px-7">
-          <Link href={`/preview`}>
+          <Link href={`/share-view`}>
             <span className="md:hidden">
               <Eye className="w-5 h-5" />
             </span>

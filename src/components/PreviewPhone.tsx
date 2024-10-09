@@ -1,8 +1,6 @@
 import React from "react";
-// import { Link } from "lucide-react";
-import { platformIcons, platformColors } from "@/constants/platform-links";
-import { ArrowRight } from "lucide-react";
-import NextLink from "next/link";
+import { platformIcons } from "@/constants/platform-links";
+import PreviewLink from "./PreviewLink";
 
 type Link = {
   id: string;
@@ -22,24 +20,8 @@ function PreviewPhone({ links }: { links: Link[] }) {
 
         <div className="space-y-2">
           {links.map((link, idx) => {
-            const Icon =
-              platformIcons[link.platform as keyof typeof platformIcons];
             return (
-              <NextLink
-                href={link.url}
-                className={`w-full flex items-center justify-between px-4 py-3 ${
-                  platformColors[link.platform as keyof typeof platformColors]
-                } text-white rounded-lg`}
-                key={idx}
-              >
-                <div className="flex items-center">
-                  {Icon && <Icon />}
-                  <span className="ml-3 text-sm font-medium">
-                    {link.platform}
-                  </span>
-                </div>
-                <ArrowRight className="w-5 h-5" />
-              </NextLink>
+              <PreviewLink key={idx} url={link.url} platform={link.platform} />
             );
           })}
         </div>
