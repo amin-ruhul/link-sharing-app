@@ -2,10 +2,14 @@
 
 import Link from "next/link";
 import Button from "./ui/Button";
+import toast from "react-hot-toast";
 
 const PreviewNav = () => {
   const handleClipboard = () => {
-    navigator.clipboard.writeText(window.location.toString());
+    const url = window.location.toString();
+    navigator.clipboard.writeText(url);
+
+    toast.success(`Copied ${url}`);
   };
 
   return (

@@ -64,7 +64,7 @@ function SortableLink({
       ref={setNodeRef}
       style={style}
       {...attributes}
-      className="mb-6 p-4 bg-gray-100 rounded-lg"
+      className="mb-6 p-4 bg-gray-light rounded-lg"
     >
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center">
@@ -127,8 +127,8 @@ function SortableLink({
             Link
           </label>
           <div className="mt-1 relative rounded-md shadow-sm">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <LinkIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+            <div className="absolute  left-0 pl-3 flex items-center pointer-events-none">
+              <LinkIcon className="h-5 w-5 text-gray-900" />
             </div>
             <Input
               id={`link-${link.id}`}
@@ -137,6 +137,7 @@ function SortableLink({
               }`}
               placeholder={`https://www.${platformField.value?.toLowerCase()}.com/yourusername`}
               {...urlField}
+              icon={<LinkIcon className="h-5 w-5 text-gray-900" />}
             />
           </div>
           {errors.links?.[index]?.url && (

@@ -12,6 +12,7 @@ import { ProfileSchema } from "@/lib/schema";
 import { z } from "zod";
 
 import { useProfileInfo } from "@/store/useProfileInfo";
+import toast from "react-hot-toast";
 
 interface ProfileImage {
   image: File | null;
@@ -85,6 +86,7 @@ function ProfileForm() {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(data);
+    toast.success("Profile details updated successfully");
   };
 
   return (
@@ -92,8 +94,8 @@ function ProfileForm() {
       className="flex flex-col gap-y-6  w-full"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-4 p-5 bg-grey-light rounded-xl">
-        <span className="text-grey min-w-[30%]">Profile picture</span>
+      <div className="flex flex-col md:flex-row md:items-center gap-4 p-5 bg-gray-light rounded-xl">
+        <span className="text-gray min-w-[30%]">Profile picture</span>
         <div className="flex flex-col md:flex-row gap-y-6 flex-1 md:items-center md:gap-x-6">
           <label className="relative w-32 h-32 rounded-lg overflow-hidden group border ">
             {profileImage.url && (
@@ -135,13 +137,13 @@ function ProfileForm() {
             />
           </label>
 
-          <span className="max-w-72 text-grey">
+          <span className="max-w-72 text-gray">
             Image must be below 1024x1024px. Use PNG or JPG format.
           </span>
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-3 p-5 bg-grey-light rounded-lg">
+      <div className="flex flex-col gap-y-3 p-5 bg-gray-light rounded-lg">
         <Input
           label="First name* "
           placeholder="Enter first name"
@@ -162,7 +164,7 @@ function ProfileForm() {
         />
       </div>
 
-      <hr className="border-t border-grey-border my-4 lg:my-6" />
+      <hr className="border-t border-gray-border my-4 lg:my-6" />
 
       <div className="flex md:justify-end ">
         <Button type="submit" block className="lg:w-auto">

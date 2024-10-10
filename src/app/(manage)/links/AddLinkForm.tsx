@@ -23,6 +23,7 @@ import SortableLink from "./SortableLink";
 import { type Link } from "@/lib/types";
 import { useLinkStore } from "@/store/useLinkStore";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 type FormData = {
   links: Link[];
@@ -81,6 +82,7 @@ function AddLinkForm() {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    toast.success("Information saved");
   };
 
   return (
@@ -122,12 +124,14 @@ function AddLinkForm() {
             </SortableContext>
           </DndContext>
 
-          <Button
-            type="submit"
-            className="w-full mt-6 bg-primary hover:bg-primary/90"
-          >
-            Save
-          </Button>
+          <div className="flex justify-end">
+            <Button
+              type="submit"
+              className="w-full lg:w-28 mt-6 bg-primary hover:bg-primary/90"
+            >
+              Save
+            </Button>
+          </div>
         </form>
       </div>
     </div>

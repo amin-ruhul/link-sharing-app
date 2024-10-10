@@ -36,7 +36,7 @@ function SharePage() {
               {profileData.firstName} {profileData.lastName}
             </p>
 
-            <p className="body-m text-grey">{profileData.email}</p>
+            <p className="body-m text-gray">{profileData.email}</p>
           </div>
         </div>
 

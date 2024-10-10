@@ -19,7 +19,7 @@ function NavLink({ href, className, children }: NavLinkProps) {
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-x-2 px-7 py-3 rounded-lg heading-s hover:text-primary transition-colors text-grey hover-fill-primary",
+        "inline-flex items-center gap-x-2 px-7 py-3 rounded-lg heading-s hover:text-primary transition-colors text-gray hover-fill-primary",
         {
           "text-primary bg-primary-light": isActive,
         },

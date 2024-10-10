@@ -1,10 +1,4 @@
-import {
-  Github,
-  Youtube,
-  Linkedin,
-  Twitter,
-  Facebook,
-} from "lucide-react";
+import { Github, Youtube, Linkedin, Twitter, Facebook } from "lucide-react";
 
 export const PLATFORM_LINKS = [
   {
@@ -35,7 +29,7 @@ export const PLATFORM_LINKS = [
 ];
 
 export const PLATFORM_ICON = {
-  gitHub: Github,
+  github: Github,
   youtube: Youtube,
   linkedin: Linkedin,
   twitter: Twitter,
@@ -43,9 +37,9 @@ export const PLATFORM_ICON = {
 };
 
 export const PLATFORM_MAP = {
-  gitHub: "github",
-  youTube: "youtube",
-  linkedIn: "linkedin",
+  github: "github",
+  youtube: "youtube",
+  linkedin: "linkedin",
   twitter: "twitter",
   facebook: "facebook",
 };

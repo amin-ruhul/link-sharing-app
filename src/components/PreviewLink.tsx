@@ -19,11 +19,11 @@ function PreviewLink({ url, platform }: PreviewLinkProps) {
       rel="noopener noreferrer"
       className={cn(
         `w-full flex items-center justify-between px-4 py-3 text-white rounded-lg`,
-        { "bg-github": platform === PLATFORM_MAP.gitHub },
+        { "bg-github": platform === PLATFORM_MAP.github },
         { "bg-facebook": platform === PLATFORM_MAP.facebook },
-        { "bg-linkedin": platform === PLATFORM_MAP.linkedIn },
+        { "bg-linkedin": platform === PLATFORM_MAP.linkedin },
         { "bg-twitter": platform === PLATFORM_MAP.twitter },
-        { "bg-youtube": platform === PLATFORM_MAP.youTube }
+        { "bg-youtube": platform === PLATFORM_MAP.youtube }
       )}
     >
       <div className="flex items-center">

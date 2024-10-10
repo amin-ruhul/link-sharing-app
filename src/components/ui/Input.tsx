@@ -17,7 +17,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <label
         className={cn(
-          "flex flex-col gap-y-1 md:flex-row md:text-grey",
+          "flex flex-col gap-y-1 md:flex-row md:text-gray",
           containerClassName
         )}
       >
@@ -32,7 +32,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             ref={ref}
             className={cn(
-              "w-full py-3 px-4 h-12 rounded-lg focus:outline-none  focus:border-primary caret-primary border border-grey-border focus:shadow-active placeholder:text-grey-dark/50 text-grey-dark",
+              "w-full py-3 px-4 h-12 rounded-lg focus:outline-none  focus:border-primary caret-primary border border-gray-border focus:shadow-active placeholder:text-gray-dark/50 text-gray-dark",
               {
                 "text-red border-red ": error,
                 "pl-11 pr-4": icon,

@@ -14,7 +14,7 @@ const config: Config = {
           hover: "#BEADFF",
           light: "#EFEBFF",
         },
-        grey: {
+        gray: {
           DEFAULT: "#737373",
           dark: "#333333",
           light: "#FAFAFA",
