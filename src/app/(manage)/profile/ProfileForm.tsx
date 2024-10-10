@@ -3,13 +3,15 @@
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProfileSchema } from "@/lib/schema";
 import { z } from "zod";
+
+import { useProfileInfo } from "@/store/useProfileInfo";
 
 interface ProfileImage {
   image: File | null;
@@ -26,13 +28,24 @@ function ProfileForm() {
     error: null,
   });
 
+  const updateProfileData = useProfileInfo((state) => state.updateProfileData);
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(ProfileSchema),
   });
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      updateProfileData(value as FormData);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
     const image = event.target.files?.[0];
