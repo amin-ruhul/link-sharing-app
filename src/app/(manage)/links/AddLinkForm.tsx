@@ -59,6 +59,9 @@ function AddLinkForm() {
   }, []);
 
   const addLink = () => {
+    if (fields.length >= 5) {
+      return toast.error("You can not add more then 5 links");
+    }
     insert(0, { id: Date.now().toString(), platform: "github", url: "" });
   };
 
