@@ -1,7 +1,12 @@
-import { ProfileSchema } from "./schema";
-import { z } from "zod";
+// import { ProfileSchema } from "./schema";
+// import { z } from "zod";
 
-export type ProfileData = z.infer<typeof ProfileSchema>;
+export type ProfileData = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar?: string;
+};
 
 export type Link = {
   id: string;

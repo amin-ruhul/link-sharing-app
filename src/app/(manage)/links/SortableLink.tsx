@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/Select";
 
 import { type Link } from "@/lib/types";
+import { PLATFORM_LINKS } from "@/constants/platform-links";
 
 type SortableLinkProps = {
   link: Link;
@@ -98,9 +99,18 @@ function SortableLink({
               <SelectValue placeholder="Select platform" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="GitHub">GitHub</SelectItem>
-              <SelectItem value="YouTube">YouTube</SelectItem>
-              <SelectItem value="LinkedIn">LinkedIn</SelectItem>
+              {PLATFORM_LINKS.map((platform) => {
+                const Icon = platform.icon;
+
+                return (
+                  <SelectItem key={platform.value} value={platform.value}>
+                    <div className="flex items-center space-x-2 cursor-pointer w-full">
+                      <Icon className="w-4 h-4" />
+                      <p> {platform.name}</p>
+                    </div>
+                  </SelectItem>
+                );
+              })}
             </SelectContent>
           </Select>
           {errors.links?.[index]?.platform && (

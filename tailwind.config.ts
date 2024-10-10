@@ -9,8 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          DEFAULT: "#633CFF",
+          hover: "#BEADFF",
+          light: "#EFEBFF",
+        },
+        grey: {
+          DEFAULT: "#737373",
+          dark: "#333333",
+          light: "#FAFAFA",
+          border: "#D9D9D9",
+        },
+        red: "#FF3939",
+
+        github: "#1a1a1a",
+        youtube: "#ee3939",
+        facebook: "#2442ac",
+        linkedin: "#2d68ff",
+        twitter: "#43b7e9",
       },
     },
   },

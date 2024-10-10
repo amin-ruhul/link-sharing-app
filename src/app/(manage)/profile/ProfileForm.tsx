@@ -29,6 +29,9 @@ function ProfileForm() {
   });
 
   const updateProfileData = useProfileInfo((state) => state.updateProfileData);
+  const updateProfileAvatar = useProfileInfo(
+    (state) => state.updateProfileAvatar
+  );
 
   const {
     register,
@@ -77,6 +80,7 @@ function ProfileForm() {
       url,
       error: null,
     });
+    updateProfileAvatar(url);
   }
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {

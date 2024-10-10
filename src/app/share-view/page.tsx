@@ -1,22 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import PreviewNav from "@/components/PreviewNav";
 import PreviewLink from "@/components/PreviewLink";
+import { useLinkStore } from "@/store/useLinkStore";
+import { useProfileInfo } from "@/store/useProfileInfo";
 
-const links = [
-  { id: "1", platform: "GitHub", url: "https://www.github.com/benwright" },
-  { id: "2", platform: "YouTube", url: "https://www.youtube.com/benwright" },
-  {
-    id: "3",
-    platform: "LinkedIn",
-    url: "https://www.linkedin.com/in/benwright",
-  },
-];
-
-function page() {
-  const user = {
-    avatar_url: null,
-  };
+function SharePage() {
+  const { links } = useLinkStore();
+  const { profileData } = useProfileInfo();
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-white md:bg-transparent">
@@ -26,10 +19,10 @@ function page() {
 
       <div className="w-60 flex flex-col gap-y-14 md:w-[350px] md:bg-white md:px-14 md:py-12 md:rounded-3xl md:shadow-box">
         <div className="flex flex-col items-center gap-y-[25px]">
-          {user.avatar_url ? (
+          {profileData.avatar ? (
             <Image
               alt="user"
-              src={user.avatar_url}
+              src={profileData.avatar}
               width={100}
               height={100}
               className="border-4 border-primary rounded-full object-cover aspect-square"
@@ -39,9 +32,11 @@ function page() {
           )}
 
           <div className=" w-full text-center flex flex-col gap-y-2">
-            <p className="heading-m">Ruhul amin</p>
+            <p className="heading-m">
+              {profileData.firstName} {profileData.lastName}
+            </p>
 
-            <p className="body-m text-grey">ruhul</p>
+            <p className="body-m text-grey">{profileData.email}</p>
           </div>
         </div>
 
@@ -49,7 +44,7 @@ function page() {
           {links.map((link) => {
             return (
               <PreviewLink
-                key={link.url}
+                key={link.id}
                 url={link.url}
                 platform={link.platform}
               />
@@ -61,4 +56,4 @@ function page() {
   );
 }
 
-export default page;
+export default SharePage;

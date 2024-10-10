@@ -43,21 +43,22 @@ function AddLinkForm() {
     },
   });
 
-  const { fields, move, append, remove } = useFieldArray({
+  const { fields, move, remove, insert } = useFieldArray({
     control,
     name: "links",
   });
 
   useEffect(() => {
     const subscription = watch((value) => {
-      reorderLinks(value as Link[]);
+      console.log(value.links, "value");
+      reorderLinks(value.links as Link[]);
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
   const addLink = () => {
-    append({ id: Date.now().toString(), platform: "GitHub", url: "" });
+    insert(0, { id: Date.now().toString(), platform: "github", url: "" });
   };
 
   const sensors = useSensors(

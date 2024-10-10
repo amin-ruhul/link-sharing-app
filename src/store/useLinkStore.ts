@@ -8,7 +8,7 @@ type LinkStore = {
 
 export const useLinkStore = create<LinkStore>((set) => ({
   links: [
-    { id: "1", platform: "GitHub", url: "https://www.github.com/benwright" },
+    { id: "1", platform: "github", url: "https://www.github.com/benwright" },
   ],
   reorderLinks: (newLinks) => set({ links: newLinks }),
 }));

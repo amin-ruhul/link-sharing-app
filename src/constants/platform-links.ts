@@ -1,43 +1,51 @@
-import {Github,Youtube,Linkedin} from "lucide-react"
+import {
+  Github,
+  Youtube,
+  Linkedin,
+  Twitter,
+  Facebook,
+} from "lucide-react";
 
-const PLATFORM_LINKS = [
+export const PLATFORM_LINKS = [
   {
     name: "Github",
     value: "github",
-    backgroundColor: "#1a1a1a",
+    icon: Github,
   },
   {
     name: "Twitter",
     value: "twitter",
-    backgroundColor: "#43b7e9",
+    icon: Twitter,
   },
   {
     name: "Linkedin",
     value: "linkedin",
-    backgroundColor: "#2d68ff",
+    icon: Linkedin,
   },
   {
     name: "Youtube",
     value: "youtube",
-    backgroundColor: "#ee3939",
+    icon: Youtube,
   },
   {
     name: "Facebook",
     value: "facebook",
-    backgroundColor: "#2442ac",
+    icon: Facebook,
   },
 ];
 
-
-export const platformIcons = {
-  GitHub: Github,
-  YouTube: Youtube,
-  LinkedIn: Linkedin,
+export const PLATFORM_ICON = {
+  gitHub: Github,
+  youtube: Youtube,
+  linkedin: Linkedin,
+  twitter: Twitter,
+  facebook: Facebook,
 };
 
-export const platformColors: { [key: string]: string } = {
-  GitHub: "bg-black",
-  YouTube: "bg-red-600",
-  LinkedIn: "bg-blue-600",
+export const PLATFORM_MAP = {
+  gitHub: "github",
+  youTube: "youtube",
+  linkedIn: "linkedin",
+  twitter: "twitter",
+  facebook: "facebook",
 };
-
