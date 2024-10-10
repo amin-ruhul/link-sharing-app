@@ -6,12 +6,18 @@ import Image from "next/image";
 import { ChangeEvent } from "react";
 
 import { useState } from "react";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ProfileSchema } from "@/lib/schema";
+import { z } from "zod";
 
 interface ProfileImage {
   image: File | null;
   url: string | null;
   error: string | null;
 }
+
+type FormData = z.infer<typeof ProfileSchema>;
 
 function ProfileForm() {
   const [profileImage, setProfileImage] = useState<ProfileImage>({
@@ -20,8 +26,16 @@ function ProfileForm() {
     error: null,
   });
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(ProfileSchema),
+  });
+
   function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
-    const image = event.target.files?.[0]; // Handle possibly null files array
+    const image = event.target.files?.[0];
 
     if (!image) return;
 
@@ -52,8 +66,15 @@ function ProfileForm() {
     });
   }
 
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    console.log(data);
+  };
+
   return (
-    <form className="flex flex-col gap-y-6  w-full">
+    <form
+      className="flex flex-col gap-y-6  w-full"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-col md:flex-row md:items-center gap-4 p-5 bg-grey-light rounded-xl">
         <span className="text-grey min-w-[30%]">Profile picture</span>
         <div className="flex flex-col md:flex-row gap-y-6 flex-1 md:items-center md:gap-x-6">
@@ -107,20 +128,20 @@ function ProfileForm() {
         <Input
           label="First name* "
           placeholder="Enter first name"
-          // {...register("firstName")}
-          // error={errors.firstName?.message}
+          {...register("firstName")}
+          error={errors.firstName?.message}
         />
         <Input
           label="Last name* "
           placeholder="Enter first name"
-          // {...register("lastName")}
-          // error={errors.lastName?.message}
+          {...register("lastName")}
+          error={errors.lastName?.message}
         />
         <Input
           label="Email "
           placeholder="Enter email"
-          // {...register("email")}
-          // error={errors.email?.message}
+          {...register("email")}
+          error={errors.email?.message}
         />
       </div>
 
