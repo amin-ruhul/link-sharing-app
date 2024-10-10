@@ -1,6 +1,3 @@
-// import { ProfileSchema } from "./schema";
-// import { z } from "zod";
-
 export type ProfileData = {
   firstName: string;
   lastName: string;
@@ -13,3 +10,10 @@ export type Link = {
   platform: string;
   url: string;
 };
+
+export type Platform =
+  | "github"
+  | "youtube"
+  | "linkedin"
+  | "twitter"
+  | "facebook";

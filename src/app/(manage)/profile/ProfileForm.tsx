@@ -23,16 +23,17 @@ interface ProfileImage {
 type FormData = z.infer<typeof ProfileSchema>;
 
 function ProfileForm() {
-  const [profileImage, setProfileImage] = useState<ProfileImage>({
-    image: null,
-    url: null,
-    error: null,
-  });
-
+  const { profileData } = useProfileInfo();
   const updateProfileData = useProfileInfo((state) => state.updateProfileData);
   const updateProfileAvatar = useProfileInfo(
     (state) => state.updateProfileAvatar
   );
+
+  const [profileImage, setProfileImage] = useState<ProfileImage>({
+    image: null,
+    url: profileData?.avatar || "",
+    error: null,
+  });
 
   const {
     register,
@@ -40,6 +41,7 @@ function ProfileForm() {
     watch,
     formState: { errors },
   } = useForm<FormData>({
+    defaultValues: profileData,
     resolver: zodResolver(ProfileSchema),
   });
 

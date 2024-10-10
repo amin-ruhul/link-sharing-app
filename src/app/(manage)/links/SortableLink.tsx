@@ -17,6 +17,7 @@ import {
 
 import { type Link } from "@/lib/types";
 import { PLATFORM_LINKS } from "@/constants/platform-links";
+import { type Platform } from "@/lib/types";
 
 type SortableLinkProps = {
   link: Link;
@@ -42,21 +43,41 @@ function SortableLink({
     rules: { required: "Platform is required" },
   });
 
+  const validateUrl = (url: string, platform: Platform): string | boolean => {
+    const urlPatterns: Record<Platform, RegExp> = {
+      github: /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_-]+\/?$/,
+      youtube:
+        /^https?:\/\/(www\.)?(youtube\.com\/(@)?[a-zA-Z0-9_-]+|youtu\.be\/[a-zA-Z0-9_-]+)\/?$/,
+      linkedin:
+        /^https?:\/\/(www\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_-]+\/?$/,
+      twitter: /^https?:\/\/(www\.)?twitter\.com\/[a-zA-Z0-9_]+\/?$/,
+      facebook: /^https?:\/\/(www\.)?facebook\.com\/[a-zA-Z0-9.]+\/?$/,
+    };
+
+    if (!url) return "URL is required";
+
+    if (!urlPatterns[platform].test(url))
+      return `Invalid ${platform} URL format`;
+
+    return true;
+  };
+
   const { field: urlField } = useController({
     name: `links.${index}.url`,
     control,
     rules: {
-      required: "URL is required",
-      pattern: {
-        value: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
-        message: "Invalid URL format",
-      },
+      validate: (value) => validateUrl(value, platformField.value as Platform),
     },
   });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+  };
+
+  const handlePlatformChange = (value: Platform) => {
+    platformField.onChange(value);
+    urlField.onChange("");
   };
 
   return (
@@ -92,7 +113,7 @@ function SortableLink({
             Platform
           </label>
           <Select
-            onValueChange={platformField.onChange}
+            onValueChange={handlePlatformChange}
             defaultValue={platformField.value}
           >
             <SelectTrigger id={`platform-${link.id}`} className="w-full mt-1">
