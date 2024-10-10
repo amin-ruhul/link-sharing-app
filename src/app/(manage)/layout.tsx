@@ -24,11 +24,11 @@ export default async function ManageLayout({
       </div>
 
       <div className="h-full flex lg:justify-between flex-col-reverse lg:flex-row">
-        <section className="bg-white w-full lg:w-[40%] items-center justify-center rounded-lg p-2 lg:h-[calc(100vh-150px)] hidden lg:flex">
+        <section className="bg-white w-full lg:w-[40%] items-center justify-center rounded-lg p-2 lg:h-[calc(100vh-150px)] hidden lg:flex overflow-hidden">
           <PreviewPhone links={links} />
         </section>
 
-        <section className="bg-white w-full lg:w-[57%] flex items-center justify-center rounded-lg py-3">
+        <section className="bg-white w-full lg:w-[57%] flex items-start justify-center rounded-lg py-3">
           {children}
         </section>
       </div>
