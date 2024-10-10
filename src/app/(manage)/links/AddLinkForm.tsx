@@ -56,6 +56,8 @@ function AddLinkForm() {
     });
 
     return () => subscription.unsubscribe();
+
+    //eslint-disable-next-line
   }, []);
 
   const addLink = () => {

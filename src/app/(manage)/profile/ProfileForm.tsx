@@ -51,6 +51,7 @@ function ProfileForm() {
     });
 
     return () => subscription.unsubscribe();
+    //eslint-disable-next-line
   }, []);
 
   function handleImageUpload(event: ChangeEvent<HTMLInputElement>) {
