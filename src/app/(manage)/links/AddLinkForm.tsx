@@ -132,12 +132,14 @@ function AddLinkForm() {
           </DndContext>
 
           <div className="flex justify-end">
-            <Button
-              type="submit"
-              className="w-full lg:w-28 mt-6 bg-primary hover:bg-primary/90"
-            >
-              Save
-            </Button>
+            {fields.length > 0 && (
+              <Button
+                type="submit"
+                className="w-full lg:w-28 mt-6 bg-primary hover:bg-primary/90"
+              >
+                Save
+              </Button>
+            )}
           </div>
         </form>
       </div>
