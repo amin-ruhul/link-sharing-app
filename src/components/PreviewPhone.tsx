@@ -17,13 +17,14 @@ function PreviewPhone() {
       <div className="w-full h-full border-2 rounded-[38px] relative p-4">
         <div className="flex flex-col items-center mb-16 space-y-4">
           {profileData.avatar ? (
-            <Image
-              src={profileData.avatar}
-              alt="user-profile"
-              width={100}
-              height={100}
-              className="rounded-full object-cover"
-            />
+            <div className=" relative h-[100px] w-[100px] rounded-full">
+              <Image
+                src={profileData.avatar}
+                alt="user-profile"
+                fill
+                className="rounded-full object-cover"
+              />
+            </div>
           ) : (
             <div className="w-24 h-24 bg-gray-200 rounded-full mb-4"></div>
           )}

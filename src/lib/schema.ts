@@ -16,4 +16,5 @@ export const ProfileSchema = z.object({
     .trim()
     .email({ message: "Invalid email format" })
     .or(z.literal("")),
+  avatar: z.string().optional(),
 });

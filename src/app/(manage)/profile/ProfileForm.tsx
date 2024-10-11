@@ -25,9 +25,6 @@ type FormData = z.infer<typeof ProfileSchema>;
 function ProfileForm() {
   const { profileData } = useProfileInfo();
   const updateProfileData = useProfileInfo((state) => state.updateProfileData);
-  const updateProfileAvatar = useProfileInfo(
-    (state) => state.updateProfileAvatar
-  );
 
   const [profileImage, setProfileImage] = useState<ProfileImage>({
     image: null,
@@ -39,6 +36,7 @@ function ProfileForm() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: profileData,
@@ -84,9 +82,8 @@ function ProfileForm() {
       url,
       error: null,
     });
-    updateProfileAvatar(url);
+    setValue("avatar", url);
   }
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(data);
     toast.success("Profile details updated successfully");
@@ -97,54 +94,55 @@ function ProfileForm() {
       className="flex flex-col gap-y-6  w-full"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex flex-col md:flex-row md:items-center gap-4 p-5 bg-gray-light rounded-xl">
-        <span className="text-gray min-w-[30%]">Profile picture</span>
-        <div className="flex flex-col md:flex-row gap-y-6 flex-1 md:items-center md:gap-x-6">
-          <label className="relative w-32 h-32 rounded-lg overflow-hidden group border ">
-            {profileImage.url && (
-              <Image
-                src={profileImage.url}
-                alt="Profile picture"
-                layout="fill"
-                objectFit="cover"
-                className="bg-gray-200"
-              />
-            )}
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="text-white text-center">
-                <svg
-                  className="w-8 h-8 mx-auto mb-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="text-sm">
-                  {profileImage.url ? "Change Image" : "Upload Image"}
-                </span>
+      <section className="p-5 bg-gray-light rounded-xl">
+        <div className="flex flex-col md:flex-row md:items-center gap-4 ">
+          <span className="text-gray min-w-[30%]">Profile picture</span>
+          <div className="flex flex-col md:flex-row gap-y-6 flex-1 md:items-center md:gap-x-6">
+            <label className="relative w-32 h-32 rounded-lg overflow-hidden group border ">
+              {profileImage.url && (
+                <Image
+                  src={profileImage.url}
+                  alt="Profile picture"
+                  layout="fill"
+                  objectFit="cover"
+                  className="bg-gray-200"
+                />
+              )}
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="text-white text-center">
+                  <svg
+                    className="w-8 h-8 mx-auto mb-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span className="text-sm">
+                    {profileImage.url ? "Change Image" : "Upload Image"}
+                  </span>
+                </div>
               </div>
-            </div>
-            <input
-              id="profile-picture"
-              type="file"
-              className="hidden"
-              accept="image/jpg,image/png,image/jpeg"
-              onChange={handleImageUpload}
-            />
-          </label>
-
-          <span className="max-w-72 text-gray">
-            Image must be below 1024x1024px. Use PNG or JPG format.
-          </span>
+              <input
+                id="profile-picture"
+                type="file"
+                className="hidden"
+                accept="image/jpg,image/png,image/jpeg"
+                onChange={handleImageUpload}
+              />
+            </label>
+          </div>
         </div>
-      </div>
+        {profileImage.error && (
+          <span className="text-sm text-red block">{profileImage.error}</span>
+        )}
+      </section>
 
       <div className="flex flex-col gap-y-3 p-5 bg-gray-light rounded-lg">
         <Input

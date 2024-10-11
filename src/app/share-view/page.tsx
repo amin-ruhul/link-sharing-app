@@ -15,6 +15,7 @@ function SharePage() {
     <div className="relative flex items-center justify-center min-h-screen bg-white md:bg-transparent">
       <div className="hidden md:block absolute top-0 left-0 w-full bg-primary h-[357px] -z-10 rounded-b-[32px]"></div>
 
+      {/* TODO: preview nav only visible for owner */}
       <PreviewNav />
 
       <div className="w-60 flex flex-col gap-y-14 md:w-[350px] md:bg-white md:px-14 md:py-12 md:rounded-3xl md:shadow-box">
