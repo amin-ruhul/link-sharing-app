@@ -99,6 +99,7 @@ function SortableLink({
         <button
           onClick={() => remove(index)}
           className="text-gray-500 hover:text-gray-700"
+          type="button"
         >
           Remove
         </button>

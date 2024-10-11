@@ -24,6 +24,7 @@ import { type Link } from "@/lib/types";
 import { useLinkStore } from "@/store/useLinkStore";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 type FormData = {
   links: Link[];
@@ -32,6 +33,7 @@ type FormData = {
 function AddLinkForm() {
   const links = useLinkStore((state) => state.links);
   const reorderLinks = useLinkStore((state) => state.reorderLinks);
+  const [parent] = useAutoAnimate();
 
   const {
     control,
@@ -106,7 +108,7 @@ function AddLinkForm() {
           </p>
         </Button>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} ref={parent}>
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
