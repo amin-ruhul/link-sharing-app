@@ -25,9 +25,6 @@ type FormData = z.infer<typeof ProfileSchema>;
 function ProfileForm() {
   const { profileData } = useProfileInfo();
   const updateProfileData = useProfileInfo((state) => state.updateProfileData);
-  const updateProfileAvatar = useProfileInfo(
-    (state) => state.updateProfileAvatar
-  );
 
   const [profileImage, setProfileImage] = useState<ProfileImage>({
     image: null,
@@ -39,6 +36,7 @@ function ProfileForm() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: profileData,
@@ -84,9 +82,8 @@ function ProfileForm() {
       url,
       error: null,
     });
-    updateProfileAvatar(url);
+    setValue("avatar", url);
   }
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(data);
     toast.success("Profile details updated successfully");
