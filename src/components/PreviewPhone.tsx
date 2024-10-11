@@ -5,10 +5,12 @@ import PreviewLink from "./PreviewLink";
 import { useProfileInfo } from "@/store/useProfileInfo";
 import { useLinkStore } from "@/store/useLinkStore";
 import Image from "next/image";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function PreviewPhone() {
   const { profileData } = useProfileInfo();
   const { links } = useLinkStore();
+  const [parent] = useAutoAnimate();
 
   return (
     <div className="lg:w-[65%] border-2 border-gray-300 rounded-[40px] p-4  aspect-[9/16]  bg-white">
@@ -41,8 +43,8 @@ function PreviewPhone() {
           )}
         </div>
 
-        <div className="space-y-4">
-          {links.length &&
+        <div className="space-y-4" ref={parent}>
+          {links.length > 0 &&
             links.map((link, idx) => {
               return (
                 <PreviewLink
