@@ -21,6 +21,7 @@ model User {
   firstName   String
   lastName    String
   username    String  @unique
+  password    String
   avatae      String?
   email       String?
   accessToken String?
