@@ -20,7 +20,11 @@ export const ProfileSchema = z.object({
 });
 
 export const userSchema = z.object({
-  username: z.string().trim().min(4).max(40),
+  username: z
+    .string()
+    .trim()
+    .min(4, { message: "Username must contain at least 4 characters" })
+    .max(40, { message: "Username must contain at most 40 characters" }),
   firstName: z
     .string()
     .trim()

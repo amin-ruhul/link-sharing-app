@@ -1,13 +1,24 @@
 import { createHashPassword } from "@/lib/bcrypt";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { userSchema } from "@/lib/schema";
+import { structureError } from "@/lib/utils";
 
 export async function POST(req: Request) {
   try {
     const payload = await req.json();
-    const { username, firstName, lastName, password } = payload;
+    const validate = userSchema.safeParse(payload);
 
-    // TODO: validate payload data
+    if (!validate.success) {
+      const errors = structureError(validate.error.issues);
+
+      return NextResponse.json(
+        { message: "validation error", errors },
+        { status: 422 }
+      );
+    }
+
+    const { username, firstName, lastName, password } = payload;
 
     const existingUser = await prisma.user.findUnique({
       where: { username },
