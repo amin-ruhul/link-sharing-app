@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Link {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(uuid()) @map("_id") @db.ObjectId
   platform String
   link     String
 
@@ -17,11 +17,12 @@ model Link {
 }
 
 model User {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  firstName String
-  lastName  String
-  username  String  @unique
-  avatae    String?
-  email     String?
-  links     Link[]
+  id          String  @id @default(uuid()) @map("_id") @db.ObjectId
+  firstName   String
+  lastName    String
+  username    String  @unique
+  avatae      String?
+  email       String?
+  accessToken String?
+  links       Link[]
 }
