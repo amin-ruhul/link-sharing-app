@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { userSchema } from "./schema";
+
 export type ProfileData = {
   firstName: string;
   lastName: string;
@@ -17,3 +20,5 @@ export type Platform =
   | "linkedin"
   | "twitter"
   | "facebook";
+
+export type UserFormData = z.infer<typeof userSchema>;
