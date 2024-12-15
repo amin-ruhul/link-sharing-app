@@ -16,10 +16,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     return (
       <label
-        className={cn(
-          "flex flex-col gap-y-1 md:flex-row md:text-gray",
-          containerClassName
-        )}
+        className={cn("flex flex-col gap-y-1 md:text-gray", containerClassName)}
       >
         {label && <span className="min-w-[30%]">{label}</span>}
         <div className="relative flex-1">
@@ -41,7 +38,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
             {...props}
           />
-          {error && <span className=" text-red">{error}</span>}
+          {error && (
+            <span className="text-sm block text-red first-letter:uppercase">
+              {error}
+            </span>
+          )}
         </div>
       </label>
     );
